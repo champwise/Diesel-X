@@ -4,6 +4,7 @@ export default async function InvitePage({
   params: Promise<{ token: string }>;
 }) {
   const { token } = await params;
+  void token;
 
   return (
     <div>

@@ -4,6 +4,7 @@ export default async function QrPortalPage({
   params: Promise<{ equipmentId: string }>;
 }) {
   const { equipmentId } = await params;
+  void equipmentId;
 
   return (
     <div className="mx-auto max-w-md px-4 py-8">
