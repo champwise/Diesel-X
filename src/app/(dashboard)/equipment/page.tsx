@@ -28,8 +28,8 @@ export default async function EquipmentListPage({ searchParams }: EquipmentPageP
     <div className="space-y-6">
       <header className="flex flex-col gap-2">
         <div>
-          <h1 className="text-2xl font-bold">Equipment</h1>
-          <p className="text-muted-foreground">
+          <h1 className="font-heading text-2xl font-extrabold text-near-black">Equipment</h1>
+          <p className="text-charcoal">
             Track operating status, customers, hours/kms, and upcoming services for every unit.
           </p>
         </div>
@@ -88,14 +88,14 @@ async function EquipmentTableSection({
 
 function EquipmentTableFallback() {
   return (
-    <div className="bg-white border rounded-xl shadow-sm p-6 space-y-4">
+    <div className="space-y-4 rounded-xl border border-light-gray bg-white p-6 shadow-sm">
       {Array.from({ length: 5 }).map((_, index) => (
         <div key={index} className="grid grid-cols-6 gap-4 animate-pulse">
-          <div className="h-4 rounded bg-neutral-200" />
-          <div className="h-4 rounded bg-neutral-200 col-span-2" />
-          <div className="h-4 rounded bg-neutral-200" />
-          <div className="h-4 rounded bg-neutral-200" />
-          <div className="h-4 rounded bg-neutral-200" />
+          <div className="h-4 rounded bg-light-gray" />
+          <div className="col-span-2 h-4 rounded bg-light-gray" />
+          <div className="h-4 rounded bg-light-gray" />
+          <div className="h-4 rounded bg-light-gray" />
+          <div className="h-4 rounded bg-light-gray" />
         </div>
       ))}
     </div>

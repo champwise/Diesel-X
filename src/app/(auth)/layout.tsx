@@ -1,3 +1,4 @@
+import { BrandLogo } from "@/components/shared/brand-logo";
 import { Toaster } from "@/components/ui/sonner";
 
 export default function AuthLayout({
@@ -6,15 +7,15 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-neutral-100 px-4 py-10">
+    <div className="flex min-h-screen items-center justify-center bg-light-gray/70 px-4 py-10">
       <div className="w-full max-w-md">
-        <div className="mb-6 text-center">
-          <p className="text-2xl font-bold text-red-600">Diesel-X</p>
-          <p className="text-sm text-muted-foreground">Fleet maintenance platform</p>
+        <div className="mb-6 flex flex-col items-center text-center">
+          <BrandLogo priority className="h-10 w-auto" />
+          <p className="mt-2 text-sm text-charcoal">Fleet maintenance platform</p>
         </div>
-        {children}
+        <div className="rounded-2xl border border-light-gray bg-white p-1 shadow-sm">{children}</div>
       </div>
-      <Toaster richColors />
+      <Toaster />
     </div>
   );
 }

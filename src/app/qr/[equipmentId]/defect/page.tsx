@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getEquipmentPublic, submitDefectReport } from "@/lib/actions/qr-portal";
 import { EquipmentSummaryCard } from "@/components/qr/equipment-card";
 import { StatusMessage } from "@/components/qr/status-message";
+import { BrandLogo } from "@/components/shared/brand-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -36,11 +37,11 @@ export default async function ReportDefectPage({ params, searchParams }: PagePro
   const action = submitDefectReport.bind(null, equipmentId);
 
   return (
-    <div className="mx-auto max-w-md px-4 py-8">
+    <div className="mx-auto min-h-screen max-w-md bg-light-gray/35 px-4 py-8">
       <header className="text-center">
-        <p className="text-sm font-semibold uppercase tracking-wide text-red-600">Diesel-X</p>
-        <h1 className="text-2xl font-bold">Report Defect</h1>
-        <p className="text-sm text-neutral-500">
+        <BrandLogo priority className="mx-auto h-8 w-auto" />
+        <h1 className="font-heading mt-3 text-2xl font-extrabold text-near-black">Report Defect</h1>
+        <p className="text-sm text-charcoal">
           Log issues before they become breakdowns.
         </p>
       </header>
@@ -53,12 +54,12 @@ export default async function ReportDefectPage({ params, searchParams }: PagePro
         <form
           action={action}
           method="post"
-          className="space-y-5 rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm"
+          className="space-y-5 rounded-2xl border border-light-gray bg-white p-4 shadow-sm"
           encType="multipart/form-data"
         >
           <div className="space-y-3">
             <div>
-              <label className="text-sm font-medium text-neutral-700" htmlFor="operatorName">
+              <label className="text-sm font-medium text-charcoal" htmlFor="operatorName">
                 Your name
               </label>
               <Input
@@ -70,7 +71,7 @@ export default async function ReportDefectPage({ params, searchParams }: PagePro
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-neutral-700" htmlFor="operatorPhone">
+              <label className="text-sm font-medium text-charcoal" htmlFor="operatorPhone">
                 Phone (optional)
               </label>
               <Input
@@ -82,7 +83,7 @@ export default async function ReportDefectPage({ params, searchParams }: PagePro
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-neutral-700" htmlFor="equipmentReading">
+              <label className="text-sm font-medium text-charcoal" htmlFor="equipmentReading">
                 Current {trackingLabel}
               </label>
               <Input
@@ -99,14 +100,14 @@ export default async function ReportDefectPage({ params, searchParams }: PagePro
 
           <div className="space-y-3">
             <div>
-              <label className="text-sm font-medium text-neutral-700" htmlFor="severity">
+              <label className="text-sm font-medium text-charcoal" htmlFor="severity">
                 Severity
               </label>
               <select
                 id="severity"
                 name="severity"
                 defaultValue="medium"
-                className="w-full rounded-md border border-neutral-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-md border border-mid-gray bg-white px-3 py-2 text-sm text-near-black focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
                 {SEVERITY_OPTIONS.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -114,7 +115,7 @@ export default async function ReportDefectPage({ params, searchParams }: PagePro
                   </option>
                 ))}
               </select>
-              <ul className="mt-2 space-y-1 text-xs text-neutral-500">
+              <ul className="mt-2 space-y-1 text-xs text-mid-gray">
                 {SEVERITY_OPTIONS.map((option) => (
                   <li key={option.value}>
                     <span className="font-semibold">{option.label}:</span> {option.helper}
@@ -124,7 +125,7 @@ export default async function ReportDefectPage({ params, searchParams }: PagePro
             </div>
 
             <div>
-              <label className="text-sm font-medium text-neutral-700" htmlFor="description">
+              <label className="text-sm font-medium text-charcoal" htmlFor="description">
                 Describe the defect
               </label>
               <Textarea
@@ -137,7 +138,7 @@ export default async function ReportDefectPage({ params, searchParams }: PagePro
             </div>
 
             <div>
-              <label className="text-sm font-medium text-neutral-700" htmlFor="media">
+              <label className="text-sm font-medium text-charcoal" htmlFor="media">
                 Photos or videos (optional)
               </label>
               <input
@@ -146,18 +147,18 @@ export default async function ReportDefectPage({ params, searchParams }: PagePro
                 type="file"
                 accept="image/*,video/*"
                 multiple
-                className="mt-1 w-full text-sm text-neutral-700"
+                className="mt-1 w-full text-sm text-charcoal"
               />
-              <p className="mt-1 text-xs text-neutral-500">
+              <p className="mt-1 text-xs text-mid-gray">
                 Up to 5 photos and 2 short videos (max 2 minutes each).
               </p>
             </div>
           </div>
 
-          <Button type="submit" className="w-full bg-red-600 text-white hover:bg-red-500">
+          <Button type="submit" className="h-11 w-full">
             Submit defect report
           </Button>
-          <Button asChild variant="secondary" className="w-full">
+          <Button asChild variant="secondary" className="h-11 w-full">
             <Link href={`/qr/${equipmentId}`}>Back to equipment portal</Link>
           </Button>
         </form>

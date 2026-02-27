@@ -10,7 +10,7 @@ import { SignupForm } from "./signup-form";
 
 export default function SignupPage() {
   return (
-    <Card>
+    <Card className="border-light-gray shadow-sm">
       <CardHeader>
         <CardTitle>Create your account</CardTitle>
         <CardDescription>
@@ -21,7 +21,10 @@ export default function SignupPage() {
         <SignupForm />
         <p className="text-center text-sm text-muted-foreground">
           Already have an account?{" "}
-          <Link href="/login" className="font-medium text-primary underline-offset-4 hover:underline">
+          <Link
+            href="/login"
+            className="font-semibold text-brand-red underline-offset-4 hover:text-brand-red-hover hover:underline"
+          >
             Log in
           </Link>
         </p>

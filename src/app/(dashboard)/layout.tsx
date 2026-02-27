@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { OrgProvider } from "@/components/auth/org-provider";
+import { DashboardNav } from "@/components/navigation/dashboard-nav";
+import { BrandLogo } from "@/components/shared/brand-logo";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { signOut } from "@/lib/auth/actions";
@@ -35,28 +37,29 @@ export default async function DashboardLayout({
         activeOrg,
       }}
     >
-      <div className="min-h-screen bg-neutral-50">
-        <header className="sticky top-0 z-50 border-b bg-white px-6 py-3">
+      <div className="min-h-screen bg-light-gray/45">
+        <header className="sticky top-0 z-50 border-b border-light-gray bg-white px-4 py-3 sm:px-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="text-xl font-bold text-red-600">Diesel-X</p>
-              <p className="text-sm text-muted-foreground">
+            <div className="flex min-w-[220px] flex-col gap-1">
+              <Link href="/dashboard" className="inline-flex w-fit items-center">
+                <BrandLogo priority className="h-8 w-auto" />
+              </Link>
+              <p className="text-xs text-mid-gray">
                 {activeOrg?.organizationName ?? "No active organization"}
               </p>
             </div>
 
-            <nav className="flex flex-wrap items-center gap-4 text-sm font-medium">
-              {navigationLinks.map((item) => (
-                <Link key={item.href} href={item.href} className="hover:text-red-600">
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+            <DashboardNav links={navigationLinks} />
 
             <div className="flex items-center gap-3">
-              <span className="text-sm text-muted-foreground">{displayName}</span>
+              <span className="text-sm text-charcoal">{displayName}</span>
               <form action={signOut}>
-                <Button type="submit" variant="outline" size="sm">
+                <Button
+                  type="submit"
+                  variant="outline"
+                  size="sm"
+                  className="border-light-gray text-charcoal hover:border-brand-red hover:text-brand-red"
+                >
                   Sign out
                 </Button>
               </form>
@@ -65,7 +68,7 @@ export default async function DashboardLayout({
         </header>
 
         <main className="p-6">{children}</main>
-        <Toaster richColors />
+        <Toaster />
       </div>
     </OrgProvider>
   );

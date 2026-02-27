@@ -54,9 +54,9 @@ export function EquipmentTable({ result }: EquipmentTableProps) {
 
   if (data.length === 0) {
     return (
-      <div className="bg-white border rounded-xl p-8 text-center shadow-sm">
-        <p className="text-lg font-semibold">No equipment yet</p>
-        <p className="text-muted-foreground mt-1">
+      <div className="rounded-xl border border-light-gray bg-white p-8 text-center shadow-sm">
+        <p className="font-heading text-lg font-extrabold text-near-black">No equipment yet</p>
+        <p className="mt-1 text-charcoal">
           Add your first unit to start tracking hours, status, and service intervals.
         </p>
       </div>
@@ -64,7 +64,7 @@ export function EquipmentTable({ result }: EquipmentTableProps) {
   }
 
   return (
-    <div className="bg-white border rounded-xl shadow-sm">
+    <div className="rounded-xl border border-light-gray bg-white shadow-sm">
       <Table>
         <TableHeader>
           <TableRow>
@@ -88,7 +88,7 @@ export function EquipmentTable({ result }: EquipmentTableProps) {
               <TableCell>
                 <div className="flex flex-col">
                   <span>{[item.make, item.model].filter(Boolean).join(" ") || "—"}</span>
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-xs text-mid-gray">
                     Updated {item.updatedAt ? new Date(item.updatedAt).toLocaleDateString() : "—"}
                   </span>
                 </div>
@@ -126,7 +126,7 @@ export function EquipmentTable({ result }: EquipmentTableProps) {
           ))}
         </TableBody>
       </Table>
-      <div className="flex flex-col gap-3 border-t px-4 py-3 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-3 border-t border-light-gray px-4 py-3 text-sm text-charcoal md:flex-row md:items-center md:justify-between">
         <span>
           Showing {paginationRange.start}-{paginationRange.end} of {total} units
         </span>
@@ -139,7 +139,7 @@ export function EquipmentTable({ result }: EquipmentTableProps) {
           >
             <ChevronLeftIcon className="size-4" /> Previous
           </Button>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-xs text-mid-gray">
             Page {page} of {totalPages}
           </span>
           <Button

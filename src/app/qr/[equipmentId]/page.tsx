@@ -7,6 +7,7 @@ import {
 } from "@/lib/actions/qr-portal";
 import { EquipmentSummaryCard } from "@/components/qr/equipment-card";
 import { StatusMessage } from "@/components/qr/status-message";
+import { BrandLogo } from "@/components/shared/brand-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -50,11 +51,11 @@ export default async function QrPortalPage({ params, searchParams }: PageProps) 
   ];
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-md flex-col px-4 py-8">
+    <div className="mx-auto flex min-h-screen max-w-md flex-col bg-light-gray/35 px-4 py-8">
       <header className="text-center">
-        <p className="text-sm font-semibold uppercase tracking-wide text-red-600">Diesel-X</p>
-        <h1 className="mt-1 text-2xl font-bold">Equipment Portal</h1>
-        <p className="text-sm text-neutral-500">No login required — keep the fleet moving.</p>
+        <BrandLogo priority className="mx-auto h-8 w-auto" />
+        <h1 className="font-heading mt-3 text-2xl font-extrabold text-near-black">Equipment Portal</h1>
+        <p className="text-sm text-charcoal">No login required. Keep the fleet moving.</p>
       </header>
 
       <StatusMessage status={searchParams?.status} message={searchParams?.message} />
@@ -62,15 +63,15 @@ export default async function QrPortalPage({ params, searchParams }: PageProps) 
       <main className="mt-6 space-y-6">
         <EquipmentSummaryCard equipment={equipment} />
 
-        <section className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
+        <section className="rounded-2xl border border-light-gray bg-white p-4 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-base font-semibold text-neutral-900">Update {trackingLabel}</h2>
-              <p className="text-sm text-neutral-500">
+              <h2 className="font-heading text-base font-extrabold text-near-black">Update {trackingLabel}</h2>
+              <p className="text-sm text-charcoal">
                 New reading must be {">="} {equipment.currentReading.toLocaleString()}.
               </p>
             </div>
-            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">Latest</span>
+            <span className="text-xs font-semibold uppercase tracking-wide text-mid-gray">Latest</span>
           </div>
           <form
             action={updateAction}
@@ -86,22 +87,22 @@ export default async function QrPortalPage({ params, searchParams }: PageProps) 
               aria-label={`Current ${trackingLabel}`}
               required
             />
-            <Button type="submit" className="bg-red-600 text-white hover:bg-red-500">
+            <Button type="submit" className="h-11">
               Save Reading
             </Button>
           </form>
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-neutral-500">Quick actions</h2>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-mid-gray">Quick actions</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {actionLinks.map((action) => (
               <Link key={action.href} href={action.href} className="group">
-                <div className="flex h-full flex-col rounded-2xl border border-neutral-200 bg-neutral-50 p-4 transition hover:border-red-500 hover:bg-white">
-                  <p className="text-lg font-semibold text-neutral-900 group-hover:text-red-600">
+                <div className="flex h-full flex-col rounded-2xl border border-light-gray bg-white p-4 transition hover:border-brand-red/45 hover:bg-light-gray/20">
+                  <p className="font-heading text-lg font-extrabold text-near-black transition-colors group-hover:text-brand-red">
                     {action.label}
                   </p>
-                  <p className="mt-1 text-sm text-neutral-500">{action.description}</p>
+                  <p className="mt-1 text-sm text-charcoal">{action.description}</p>
                 </div>
               </Link>
             ))}
@@ -109,7 +110,7 @@ export default async function QrPortalPage({ params, searchParams }: PageProps) 
         </section>
       </main>
 
-      <footer className="mt-10 text-center text-xs text-neutral-400">
+      <footer className="mt-10 text-center text-xs text-mid-gray">
         Field support · Powered by Diesel-X
       </footer>
     </div>
