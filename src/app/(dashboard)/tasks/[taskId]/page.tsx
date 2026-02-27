@@ -4,6 +4,7 @@ export default async function TaskDetailPage({
   params: Promise<{ taskId: string }>;
 }) {
   const { taskId } = await params;
+  void taskId;
 
   return (
     <div>

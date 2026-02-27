@@ -6,6 +6,19 @@ export const trackingUnitEnum = pgEnum("tracking_unit", ["hours", "kilometers"])
 
 export const operatingStatusEnum = pgEnum("operating_status", ["up", "down"]);
 
+export const equipmentStatusEnum = pgEnum("equipment_status", ["active", "inactive"]);
+
+export const equipmentTypeEnum = pgEnum("equipment_type", [
+  "excavator",
+  "truck",
+  "loader",
+  "dozer",
+  "grader",
+  "roller",
+  "crane",
+  "other",
+]);
+
 export const equipment = pgTable("equipment", {
   id: uuid("id").defaultRandom().primaryKey(),
   organizationId: uuid("organization_id")
@@ -15,8 +28,10 @@ export const equipment = pgTable("equipment", {
     .notNull()
     .references(() => customers.id, { onDelete: "restrict" }),
   unitName: text("unit_name").notNull(),
+  year: integer("year"),
   make: text("make"),
   model: text("model"),
+  equipmentType: equipmentTypeEnum("equipment_type").notNull().default("other"),
   serialNumber: text("serial_number"),
   registration: text("registration"),
   location: text("location"),
@@ -25,9 +40,13 @@ export const equipment = pgTable("equipment", {
   currentReading: integer("current_reading").notNull().default(0),
   nextServiceDue: integer("next_service_due"),
   nextServiceType: text("next_service_type"),
+  serviceIntervalHours: integer("service_interval_hours"),
+  serviceIntervalKms: integer("service_interval_kms"),
   taskCreationThreshold: integer("task_creation_threshold").default(50),
   operatingStatus: operatingStatusEnum("operating_status").notNull().default("up"),
+  status: equipmentStatusEnum("status").notNull().default("active"),
   qrCodeUrl: text("qr_code_url"),
+  notes: text("notes"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
