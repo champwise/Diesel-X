@@ -120,6 +120,8 @@ Photos and videos attached to a specific failed pre-start checklist item. When a
 
 A defect or breakdown report submitted by an operator through the QR portal. This is the submission record that captures everything the operator entered — their name and phone (pre-filled from a cookie if they've used the portal before), the equipment reading at the time, a description of the issue, and crucially, the `is_equipment_down` flag. If the operator indicates the equipment is down, this becomes a breakdown (the equipment's operating status is set to down and a breakdown task is created). If the equipment is still operational, a defect task is created instead. The `generated_task_id` links to the task that was auto-created from this report, so you can always trace a task back to the original operator submission.
 
+The `severity` column captures the operator-selected priority (`low`, `medium`, `high`, `critical`). Critical severity is treated the same as a breakdown — it escalates the issue immediately.
+
 ### `qr_defect_report_media`
 
 Photos and videos attached to a QR defect report. Operators can upload up to 5 photos and 2 short videos (max 2 minutes each) to document the issue they're reporting. Each media file is stored in Supabase Storage and linked back to its defect report. This is separate from `task_media` — these are the raw uploads from the operator at the time of reporting, while `task_media` holds files attached by mechanics during the repair process.
