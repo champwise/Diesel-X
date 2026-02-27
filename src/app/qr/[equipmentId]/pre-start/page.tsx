@@ -9,6 +9,7 @@ import {
 } from "@/lib/actions/qr-portal";
 import { StatusMessage } from "@/components/qr/status-message";
 import { EquipmentSummaryCard } from "@/components/qr/equipment-card";
+import { BrandLogo } from "@/components/shared/brand-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -36,17 +37,17 @@ export default async function PreStartPage({ params, searchParams }: PageProps) 
 
   if (!template) {
     return (
-      <div className="mx-auto max-w-md px-4 py-8">
+      <div className="mx-auto min-h-screen max-w-md bg-light-gray/35 px-4 py-8">
         <header className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-wide text-red-600">Diesel-X</p>
-          <h1 className="text-2xl font-bold">Pre-Start Check</h1>
+          <BrandLogo priority className="mx-auto h-8 w-auto" />
+          <h1 className="font-heading mt-3 text-2xl font-extrabold text-near-black">Pre-Start Check</h1>
         </header>
         <StatusMessage status={searchParams?.status} message={searchParams?.message} />
         <div className="mt-6 space-y-4">
           <EquipmentSummaryCard equipment={equipment} />
-          <div className="rounded-2xl border border-dashed border-neutral-300 bg-white p-6 text-center">
-            <p className="font-semibold text-neutral-900">No pre-start template configured.</p>
-            <p className="mt-2 text-sm text-neutral-500">Let your office know so they can assign one.</p>
+          <div className="rounded-2xl border border-dashed border-mid-gray/45 bg-white p-6 text-center">
+            <p className="font-heading font-extrabold text-near-black">No pre-start template configured.</p>
+            <p className="mt-2 text-sm text-charcoal">Let your office know so they can assign one.</p>
           </div>
           <Button asChild variant="secondary">
             <Link href={`/qr/${equipmentId}`}>Back to equipment portal</Link>
@@ -57,11 +58,11 @@ export default async function PreStartPage({ params, searchParams }: PageProps) 
   }
 
   return (
-    <div className="mx-auto max-w-md px-4 py-8">
+    <div className="mx-auto min-h-screen max-w-md bg-light-gray/35 px-4 py-8">
       <header className="text-center">
-        <p className="text-sm font-semibold uppercase tracking-wide text-red-600">Diesel-X</p>
-        <h1 className="text-2xl font-bold">Pre-Start Check</h1>
-        <p className="text-sm text-neutral-500">Complete every item before operating.</p>
+        <BrandLogo priority className="mx-auto h-8 w-auto" />
+        <h1 className="font-heading mt-3 text-2xl font-extrabold text-near-black">Pre-Start Check</h1>
+        <p className="text-sm text-charcoal">Complete every item before operating.</p>
       </header>
 
       <StatusMessage status={searchParams?.status} message={searchParams?.message} />
@@ -75,14 +76,14 @@ export default async function PreStartPage({ params, searchParams }: PageProps) 
           className="space-y-5"
           encType="multipart/form-data"
         >
-          <section className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm space-y-4">
+          <section className="space-y-4 rounded-2xl border border-light-gray bg-white p-4 shadow-sm">
             <div>
-              <h2 className="text-base font-semibold text-neutral-900">Operator details</h2>
-              <p className="text-sm text-neutral-500">We remember these for next time.</p>
+              <h2 className="font-heading text-base font-extrabold text-near-black">Operator details</h2>
+              <p className="text-sm text-charcoal">We remember these for next time.</p>
             </div>
             <div className="space-y-3">
               <div>
-                <label className="text-sm font-medium text-neutral-700" htmlFor="operatorName">
+                <label className="text-sm font-medium text-charcoal" htmlFor="operatorName">
                   Operator name
                 </label>
                 <Input
@@ -94,7 +95,7 @@ export default async function PreStartPage({ params, searchParams }: PageProps) 
                 />
               </div>
               <div>
-                <label className="text-sm font-medium text-neutral-700" htmlFor="operatorPhone">
+                <label className="text-sm font-medium text-charcoal" htmlFor="operatorPhone">
                   Phone (optional)
                 </label>
                 <Input
@@ -106,7 +107,7 @@ export default async function PreStartPage({ params, searchParams }: PageProps) 
                 />
               </div>
               <div>
-                <label className="text-sm font-medium text-neutral-700" htmlFor="equipmentReading">
+                <label className="text-sm font-medium text-charcoal" htmlFor="equipmentReading">
                   Current {trackingLabel}
                 </label>
                 <Input
@@ -118,18 +119,18 @@ export default async function PreStartPage({ params, searchParams }: PageProps) 
                   defaultValue={equipment.currentReading}
                   required
                 />
-                <p className="mt-1 text-xs text-neutral-500">
+                <p className="mt-1 text-xs text-mid-gray">
                   Must be {"\u2265"} {equipment.currentReading.toLocaleString()}.
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
+          <section className="space-y-4 rounded-2xl border border-light-gray bg-white p-4 shadow-sm">
             <div>
-              <h2 className="text-base font-semibold text-neutral-900">{template.template.name}</h2>
+              <h2 className="font-heading text-base font-extrabold text-near-black">{template.template.name}</h2>
               {template.template.description && (
-                <p className="text-sm text-neutral-500">{template.template.description}</p>
+                <p className="text-sm text-charcoal">{template.template.description}</p>
               )}
             </div>
 
@@ -141,10 +142,10 @@ export default async function PreStartPage({ params, searchParams }: PageProps) 
           </section>
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button type="submit" className="flex-1 bg-red-600 text-white hover:bg-red-500">
+            <Button type="submit" className="h-11 flex-1">
               Submit pre-start
             </Button>
-            <Button asChild variant="secondary" className="flex-1">
+            <Button asChild variant="secondary" className="h-11 flex-1">
               <Link href={`/qr/${equipmentId}`}>Cancel</Link>
             </Button>
           </div>
@@ -162,9 +163,9 @@ function ChecklistField({ item }: { item: PrestartTemplateSummary["items"][numbe
   const criticalLabel = item.isCritical ? "Critical — fail will mark equipment down" : "Fail will create a defect task";
 
   return (
-    <fieldset className="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-4">
-      <legend className="text-base font-semibold text-neutral-900">{item.label}</legend>
-      <p className="text-xs text-neutral-500">
+    <fieldset className="rounded-2xl border border-light-gray bg-light-gray/35 p-4">
+      <legend className="font-heading text-base font-extrabold text-near-black">{item.label}</legend>
+      <p className="text-xs text-mid-gray">
         {item.isCritical ? "Critical check" : "Standard check"}
         {item.isRequired ? " • Required" : ""}
       </p>
@@ -259,7 +260,7 @@ function ChoiceField({
           />
           <label
             htmlFor={passId}
-            className="block rounded-xl border border-neutral-200 bg-white px-4 py-3 text-center font-semibold text-neutral-800"
+            className="block rounded-xl border border-mid-gray/35 bg-white px-4 py-3 text-center font-semibold text-near-black transition-colors peer-checked:border-near-black"
           >
             {positiveLabel}
           </label>
@@ -275,11 +276,11 @@ function ChoiceField({
           />
           <label
             htmlFor={failId}
-            className="block rounded-xl border border-red-200 bg-white px-4 py-3 text-center font-semibold text-red-600"
+            className="block rounded-xl border border-brand-red/35 bg-white px-4 py-3 text-center font-semibold text-brand-red transition-colors peer-checked:border-brand-red peer-checked:bg-brand-red peer-checked:text-white"
           >
             {negativeLabel}
           </label>
-          <div className="mt-3 hidden space-y-2 rounded-xl border border-dashed border-red-200 bg-red-50/60 p-3 text-sm text-red-700 peer-checked:block">
+          <div className="mt-3 hidden space-y-2 rounded-xl border border-dashed border-brand-red/40 bg-brand-red/10 p-3 text-sm text-brand-red peer-checked:block">
             <p className="text-sm font-semibold">{helperText}</p>
             <label className="text-xs font-medium" htmlFor={`${notesName}-field`}>
               Describe the issue
@@ -290,7 +291,7 @@ function ChoiceField({
               placeholder="Where is the fault? What did you see?"
               minLength={10}
             />
-            <div className="space-y-1 text-xs text-red-700">
+            <div className="space-y-1 text-xs text-brand-red">
               <label className="font-medium" htmlFor={`${mediaName}-input`}>
                 Attach media (photos or short videos)
               </label>
@@ -300,14 +301,14 @@ function ChoiceField({
                 type="file"
                 multiple
                 accept="image/*,video/*"
-                className="text-xs text-neutral-700"
+                className="text-xs text-charcoal"
               />
               <p>Up to 5 photos and 2 videos (max 2 min each).</p>
             </div>
           </div>
         </div>
       </div>
-      <p className="text-xs text-neutral-500">
+      <p className="text-xs text-mid-gray">
         Choosing {negativeLabel} will alert the maintenance team: {helperText}.
       </p>
     </div>

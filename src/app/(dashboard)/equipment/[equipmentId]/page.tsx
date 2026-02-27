@@ -55,9 +55,9 @@ export default async function EquipmentDetailPage({ params }: EquipmentDetailPag
     <div className="space-y-6">
       <header className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <p className="text-sm text-muted-foreground uppercase tracking-wide">Unit</p>
-          <h1 className="text-3xl font-bold">{equipment.unitName}</h1>
-          <p className="text-muted-foreground">
+          <p className="text-sm uppercase tracking-wide text-mid-gray">Unit</p>
+          <h1 className="font-heading text-3xl font-extrabold text-near-black">{equipment.unitName}</h1>
+          <p className="text-charcoal">
             {[equipment.year, equipment.make, equipment.model].filter(Boolean).join(" · ") ||
               "Details coming soon"}
           </p>
@@ -146,8 +146,8 @@ export default async function EquipmentDetailPage({ params }: EquipmentDetailPag
                   value={equipment.nextServiceType ?? "Not specified"}
                 />
                 <div className="space-y-2">
-                  <p className="text-sm font-medium">Service Intervals</p>
-                  <div className="text-sm text-muted-foreground">
+                  <p className="text-sm font-semibold text-near-black">Service Intervals</p>
+                  <div className="text-sm text-charcoal">
                     <p>
                       Hours: {formatInterval(equipment.serviceIntervalHours)} h
                     </p>
@@ -168,7 +168,7 @@ export default async function EquipmentDetailPage({ params }: EquipmentDetailPag
               {equipment.notes ? (
                 <p>{equipment.notes}</p>
               ) : (
-                <p className="text-muted-foreground">
+                <p className="text-charcoal">
                   No internal notes yet. Use this space to capture site-specific quirks, safety requirements, or customer preferences.
                 </p>
               )}
@@ -181,7 +181,7 @@ export default async function EquipmentDetailPage({ params }: EquipmentDetailPag
             <CardHeader>
               <CardTitle>Task History</CardTitle>
             </CardHeader>
-            <CardContent className="text-muted-foreground">
+            <CardContent className="text-charcoal">
               Task history filters, drill-ins, and exports will land here. For now, use the Tasks tab to review assignments.
             </CardContent>
           </Card>
@@ -192,7 +192,7 @@ export default async function EquipmentDetailPage({ params }: EquipmentDetailPag
             <CardHeader>
               <CardTitle>Pre-Start History</CardTitle>
             </CardHeader>
-            <CardContent className="text-muted-foreground">
+            <CardContent className="text-charcoal">
               Pre-start submissions from the QR portal will appear here with filters for template, operator, and failed items.
             </CardContent>
           </Card>
@@ -210,10 +210,10 @@ export default async function EquipmentDetailPage({ params }: EquipmentDetailPag
                 width={192}
                 height={192}
                 unoptimized
-                className="h-48 w-48 rounded-lg border bg-white p-4"
+                className="h-48 w-48 rounded-lg border border-light-gray bg-white p-4"
               />
               <div className="space-y-3">
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-charcoal">
                   Print this code and stick it on the unit. Anyone can scan it to log pre-starts, defects, or breakdowns without logging in.
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -293,10 +293,10 @@ function formatType(value: string | null) {
 function DataPoint({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div className="flex flex-col">
-      <span className="text-xs text-muted-foreground uppercase tracking-wide">
+      <span className="text-xs uppercase tracking-wide text-mid-gray">
         {label}
       </span>
-      <span className="text-sm font-medium">{value}</span>
+      <span className="text-sm font-semibold text-near-black">{value}</span>
     </div>
   );
 }

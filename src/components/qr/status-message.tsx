@@ -3,9 +3,9 @@ import { CheckCircle2, Info, TriangleAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const statusStyles = {
-  success: "bg-green-50 text-green-800 border-green-200",
-  error: "bg-red-50 text-red-700 border-red-200",
-  info: "bg-blue-50 text-blue-700 border-blue-200",
+  success: "border-mid-gray/35 bg-light-gray text-near-black",
+  error: "border-brand-red/30 bg-brand-red/10 text-brand-red",
+  info: "border-light-gray bg-white text-charcoal",
 } as const;
 
 type StatusType = keyof typeof statusStyles;

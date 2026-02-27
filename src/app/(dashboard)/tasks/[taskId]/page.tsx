@@ -8,7 +8,7 @@ export default async function TaskDetailPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">Task Detail</h1>
+      <h1 className="font-heading text-2xl font-extrabold text-near-black">Task Detail</h1>
       {/* TODO: Full task detail — status, checklist, parts, media, field report/service sheet, approval actions, clock in/out */}
     </div>
   );

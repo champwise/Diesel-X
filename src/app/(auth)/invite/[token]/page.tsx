@@ -23,7 +23,7 @@ export default async function InvitePage({
 
   if (!invite) {
     return (
-      <Card>
+      <Card className="border-light-gray shadow-sm">
         <CardHeader>
           <CardTitle>Invitation not found</CardTitle>
           <CardDescription>
@@ -42,7 +42,7 @@ export default async function InvitePage({
     normalizedInviteEmail !== normalizedUserEmail;
 
   return (
-    <Card>
+    <Card className="border-light-gray shadow-sm">
       <CardHeader>
         <CardTitle>Accept invitation</CardTitle>
         <CardDescription>
@@ -56,7 +56,7 @@ export default async function InvitePage({
               Signed in as <span className="font-medium text-foreground">{currentUser.authUser.email}</span>
             </p>
             {emailMismatch ? (
-              <p className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+              <p className="rounded-md border border-brand-red/40 bg-brand-red/10 px-3 py-2 text-sm text-brand-red">
                 This invite was sent to {invite.inviteEmail}. Sign in with that account to accept.
               </p>
             ) : (

@@ -6,13 +6,13 @@ type EquipmentStatus = EquipmentFormValues["status"];
 type OperatingStatus = EquipmentFormValues["operatingStatus"];
 
 const equipmentStatusStyles: Record<EquipmentStatus, string> = {
-  active: "bg-emerald-100 text-emerald-700 border-emerald-200",
-  inactive: "bg-muted text-muted-foreground border-border",
+  active: "border-light-gray bg-light-gray text-near-black",
+  inactive: "border-light-gray bg-white text-charcoal",
 };
 
 const operatingStatusStyles: Record<OperatingStatus, string> = {
-  up: "bg-emerald-50 text-emerald-700 border-emerald-200",
-  down: "bg-red-50 text-red-700 border-red-200",
+  up: "border-mid-gray/35 bg-light-gray text-charcoal",
+  down: "border-brand-red/35 bg-brand-red/10 text-brand-red",
 };
 
 export function EquipmentStatusBadge({ status }: { status: EquipmentStatus }) {

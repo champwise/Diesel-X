@@ -86,9 +86,9 @@ export function EquipmentFilters({
   );
 
   return (
-    <div className="bg-white border rounded-xl p-4 shadow-sm">
+    <div className="rounded-xl border border-light-gray bg-white p-4 shadow-sm">
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+        <div className="flex items-center gap-2 text-sm text-charcoal">
           <FilterIcon className="size-4" />
           Filters
         </div>
@@ -109,9 +109,9 @@ export function EquipmentFilters({
 
       <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
         <label className="group flex flex-col gap-1 text-sm">
-          <span className="text-muted-foreground">Search</span>
+          <span className="text-charcoal">Search</span>
           <span className="relative flex items-center">
-            <SearchIcon className="absolute left-3 size-4 text-muted-foreground" />
+            <SearchIcon className="absolute left-3 size-4 text-mid-gray" />
             <Input
               placeholder="Search unit #, make, or model"
               value={searchTerm}
@@ -122,7 +122,7 @@ export function EquipmentFilters({
         </label>
 
         <label className="flex flex-col gap-1 text-sm">
-          <span className="text-muted-foreground">Customer</span>
+          <span className="text-charcoal">Customer</span>
           <Select
             value={filters.customerId ?? "all"}
             onValueChange={(value) =>
@@ -146,7 +146,7 @@ export function EquipmentFilters({
         </label>
 
         <label className="flex flex-col gap-1 text-sm">
-          <span className="text-muted-foreground">Status</span>
+          <span className="text-charcoal">Status</span>
           <Select
             value={filters.status}
             onValueChange={(value) =>
@@ -169,7 +169,7 @@ export function EquipmentFilters({
         </label>
 
         <label className="flex flex-col gap-1 text-sm">
-          <span className="text-muted-foreground">Equipment Type</span>
+          <span className="text-charcoal">Equipment Type</span>
           <Select
             value={filters.equipmentType}
             onValueChange={(value) =>
