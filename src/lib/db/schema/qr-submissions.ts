@@ -5,6 +5,7 @@ import {
   timestamp,
   integer,
   boolean,
+  pgEnum,
 } from "drizzle-orm/pg-core";
 import { equipment } from "./equipment";
 import { organizations } from "./organizations";
@@ -57,6 +58,13 @@ export const prestartSubmissionItemMedia = pgTable("prestart_submission_item_med
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
 
+export const qrSeverityEnum = pgEnum("qr_defect_severity", [
+  "low",
+  "medium",
+  "high",
+  "critical",
+]);
+
 // --- QR Defect/Breakdown Reports ---
 
 export const qrDefectReports = pgTable("qr_defect_reports", {
@@ -71,6 +79,7 @@ export const qrDefectReports = pgTable("qr_defect_reports", {
   operatorPhone: text("operator_phone"),
   equipmentReading: integer("equipment_reading").notNull(),
   description: text("description").notNull(),
+  severity: qrSeverityEnum("severity").notNull().default("low"),
   isEquipmentDown: boolean("is_equipment_down").notNull().default(false),
   generatedTaskId: uuid("generated_task_id").references(() => tasks.id, {
     onDelete: "set null",

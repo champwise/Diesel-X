@@ -32,7 +32,9 @@ The companies or individuals whose equipment is being serviced. Every piece of e
 
 ### `equipment`
 
-The central table of the app — every piece of heavy equipment being tracked. Each piece of equipment belongs to an organization and a customer. It stores identification info (unit name, make, model, serial number, registration), a photo, and the current location. Critically, it tracks usage via `current_reading` (either hours or kilometers, determined by `tracking_unit`), the `next_service_due` threshold, and what the `next_service_type` should be. The `operating_status` field (up or down) reflects whether the equipment is currently operational. Each unit also has a `task_creation_threshold` that controls how far in advance of a service the system should auto-create a maintenance task, and a `qr_code_url` for the scannable sticker.
+The central table of the app — every piece of heavy equipment being tracked. Each piece of equipment belongs to an organization and a customer. It stores identification info (unit name, make, model, year, serial number/VIN, registration), a photo, and the current location. Critically, it tracks usage via `current_reading` (either hours or kilometers, determined by `tracking_unit`), the `next_service_due` threshold, and what the `next_service_type` should be. The `operating_status` field (up or down) reflects whether the equipment is currently operational, while the admin-visible `status` flag (active or inactive) controls whether the unit should appear in dashboards/lists without hard-deleting it.
+
+Each unit tracks lifecycle settings for proactive maintenance: `service_interval_hours`, `service_interval_kms`, and `task_creation_threshold` define when the system should raise upcoming service reminders relative to the current reading. The `equipment_type` enum (excavator, truck, loader, dozer, grader, roller, crane, other) lets the UI filter and color-code the fleet list. Freeform `notes` capture any extra context admins need when reviewing the detail page. Every unit also stores a `qr_code_url` for the scannable sticker shown in the QR tab.
 
 ### `equipment_visibility`
 
@@ -117,6 +119,8 @@ Photos and videos attached to a specific failed pre-start checklist item. When a
 ### `qr_defect_reports`
 
 A defect or breakdown report submitted by an operator through the QR portal. This is the submission record that captures everything the operator entered — their name and phone (pre-filled from a cookie if they've used the portal before), the equipment reading at the time, a description of the issue, and crucially, the `is_equipment_down` flag. If the operator indicates the equipment is down, this becomes a breakdown (the equipment's operating status is set to down and a breakdown task is created). If the equipment is still operational, a defect task is created instead. The `generated_task_id` links to the task that was auto-created from this report, so you can always trace a task back to the original operator submission.
+
+The `severity` column captures the operator-selected priority (`low`, `medium`, `high`, `critical`). Critical severity is treated the same as a breakdown — it escalates the issue immediately.
 
 ### `qr_defect_report_media`
 
